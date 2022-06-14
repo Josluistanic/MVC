@@ -15,15 +15,15 @@
         <form action="<?= constant('URL') ?>nuevo/registrarAlumno" method="POST">
             <p>
                 <label for="matricula">Matricula</label><br>
-                <input type="text" name="matricula" id="matricula">
+                <input type="text" name="matricula" id="matricula" required>
             </p>
             <p>
                 <label for="nombre">Nombre</label><br>
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" name="nombre" id="nombre" required>
             </p>
             <p>
                 <label for="apellido">Apellido</label><br>
-                <input type="text" name="apellido" id="apellido">
+                <input type="text" name="apellido" id="apellido" required>
             </p>
             <p>
                 <input type="submit" value="Registrar nuevo alumno">
