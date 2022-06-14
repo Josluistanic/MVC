@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="<?= constant('URL') ?>public/css/styles.css">
+    <title>ERR</title>
 </head>
 
 <body>
-    <?php require "nav.php" ?>
+    <?php require 'views/header.php' ?>
+    <div id="main">
+        <h1><?= $this->mensaje; ?></h1>
+    </div>
+    <?php require 'views/footer.php' ?>>
 </body>
 
 </html>

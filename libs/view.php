@@ -1,14 +1,13 @@
 <?php
-
-class View{
-    function __construct(){
-        //echo '<p>Ejecutando el constructor de la clase View en libs/view.php archivo base de vistas</p>';
+class View
+{
+    function __construct()
+    {
+        //echo '<div>Vista base</div>';
     }
 
-
-    function render($nombre) {
-        require 'views/'.$nombre.'.php';
+    function render($nombre)
+    {
+        require 'views/' . $nombre . '.php';
     }
 }
-
-?>

@@ -1,38 +1,36 @@
 <?php
-require_once 'controllers/error.php';
+require_once 'controllers/errors.php';
 
-class App
-{
-    function __construct()
-    {
-        //echo '<p> Nueva app - Ejecutando el constructor de  libs/app.php</p>';
+class App{
+    function __construct(){
+        //echo '<div>App</div>';
+
         $url = isset($_GET['url']) ? $_GET['url'] : null;
-        $url = rtrim($url, '/');                                //Elimino / del final de la url del
-        $url = explode('/', $url);                              //Crea un array con elementos separados por / 
+        $url = rtrim($url, '/');
+        $url = explode('/', $url);
+        //var_dump($url);
 
-        if(empty($url[0])){
-            $archivoController = 'controllers/main.php';
-            require_once $archivoController;
-            $controller = new Main();
+        if (empty($url[0])) {
+            $archivo_controller = 'controllers/main.php';
+            require_once $archivo_controller;
+            $controller = new Main(); 
             return false;
         }
 
+        $archivo_controller = 'controllers/'.$url[0].'.php';
 
+        if(file_exists($archivo_controller)){
+            require_once $archivo_controller;
+            $controller = new $url[0]; 
 
-        
-        $archivoController = 'controllers/' . $url[0] . '.php';
-
-        if (file_exists($archivoController)) {                  //Si existe el controlador ingresado
-            require_once $archivoController;                    //llamo al archivo del controlador
-            $controller = new $url[0];                          //Saco solo el nombre del controlador
-
-            if (isset($url[1])) {                               //Si existe el method/function en el controlador
-                $controller->{$url[1]}();                       //Ejecuto el method/function que solicitan
-            } else {
-                //$controller = new resError();
+            if(isset($url[1])){
+                $controller->{$url[1]}();
             }
-        } else {
-            $controller = new resError();
+
+            
+        }else{
+            $controller = new Errors();
         }
     }
 }
+?>
