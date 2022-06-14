@@ -14,6 +14,7 @@ class App{
             $archivo_controller = 'controllers/main.php';
             require_once $archivo_controller;
             $controller = new Main(); 
+            $controller->loadModel('main');
             return false;
         }
 
@@ -22,6 +23,7 @@ class App{
         if(file_exists($archivo_controller)){
             require_once $archivo_controller;
             $controller = new $url[0]; 
+            $controller->loadModel($url[0]);        //llamar al modelo
 
             if(isset($url[1])){
                 $controller->{$url[1]}();
