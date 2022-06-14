@@ -16,8 +16,8 @@ class NuevoModel extends Model
             //echo 'insertar datos';
             return true;
         } catch (PDOException $e) {
-            echo '<p>Matricula ya registrada</p>';
-            echo "Error: " . $e->getMessage();
+            //echo '<p>Matricula ya registrada</p>';
+            //echo "Error: " . $e->getMessage();
             return false;
         }
     }

@@ -3,6 +3,10 @@
 class Nuevo extends Controller{
     function __construct(){
         parent::__construct();
+        $this->view->mensaje = '';
+    }
+    
+    function render() {
         $this->view->render('nuevo/index');
     }
 
@@ -10,10 +14,16 @@ class Nuevo extends Controller{
         $matricula  = $_POST['matricula'];
         $nombre     = $_POST['nombre'];
         $apellido   = $_POST['apellido'];
+        $mensaje    = '';
 
         if ($this->model->insert(['matricula' => $matricula, 'nombre' => $nombre, 'apellido' => $apellido])) {
-            echo 'Nuevo alumno registrado';
+            $mensaje = 'Nuevo alumno registrado';
+        }else{
+            $mensaje = 'La matricula ya existe';
         }
+
+        $this->view->mensaje = $mensaje;
+        $this->render();
         //echo 'registrarAlumno()';
     }
 }

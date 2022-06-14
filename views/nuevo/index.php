@@ -12,6 +12,9 @@
 
     <div id="main">
         <h1>Esta es la vista de nuevo</h1>
+
+        <div class="center"><?= $this->mensaje; ?></div>
+
         <form action="<?= constant('URL') ?>nuevo/registrarAlumno" method="POST">
             <p>
                 <label for="matricula">Matricula</label><br>

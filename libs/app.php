@@ -10,11 +10,12 @@ class App{
         $url = explode('/', $url);
         //var_dump($url);
 
-        if (empty($url[0])) {
+        if (empty($url[0])) {                               //Ingreso sin controlador
             $archivo_controller = 'controllers/main.php';
             require_once $archivo_controller;
             $controller = new Main(); 
             $controller->loadModel('main');
+            $controller->render();
             return false;
         }
 
@@ -22,11 +23,13 @@ class App{
 
         if(file_exists($archivo_controller)){
             require_once $archivo_controller;
-            $controller = new $url[0]; 
+            $controller = new $url[0];              //Inicializar controlador
             $controller->loadModel($url[0]);        //llamar al modelo
 
-            if(isset($url[1])){
+            if(isset($url[1])){                     //Si hay un metodo en la URL
                 $controller->{$url[1]}();
+            }else{
+                $controller->render();
             }
 
             
