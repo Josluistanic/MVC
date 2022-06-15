@@ -18,15 +18,15 @@
         <form action="<?= constant('URL') ?>consulta/updateAlumno" method="POST">
             <p>
                 <label for="matricula">Matricula</label><br>
-                <input type="text" name="matricula" id="matricula" value="<?= $this->alumno->matricula ?>" disabled required>
+                <input type="text" name="matricula" id="matricula" value="<?= htmlspecialchars($this->alumno->matricula) ?>" disabled required>
             </p>
             <p>
                 <label for="nombre">Nombre</label><br>
-                <input type="text" name="nombre" id="nombre" value="<?= $this->alumno->nombre ?>" required>
+                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($this->alumno->nombre) ?>" required>
             </p>
             <p>
                 <label for="apellido">Apellido</label><br>
-                <input type="text" name="apellido" id="apellido" value="<?= $this->alumno->apellido ?>"required>
+                <input type="text" name="apellido" id="apellido" value="<?= htmlspecialchars($this->alumno->apellido) ?>"required>
             </p>
             <p>
                 <input type="submit" value="Guardar cambios">

@@ -4,11 +4,16 @@ class Consulta extends Controller{
         parent::__construct();
         $alumnos = [];
     }
+    /**
+     * The function render() is called from the controller, which calls the model to get the data, and
+     * then calls the view to display the data
+     */
     function render() {
         $alumnos = $this->model->get();
         $this->view->alumnos = $alumnos;
         $this->view->render('consulta/index');
     }
+    
     function readAlumno($param = null) {
         $matricula = $param[0];
         $alumno = $this->model->getAlumnnoByMatricula($matricula);
@@ -46,6 +51,8 @@ class Consulta extends Controller{
     function deleteAlumno($param = null) {
         $matricula = $param[0];
 
+        
+        /*
         if ($this->model->delete($matricula)) {
             $this->view->mensaje = 'Se ha eliminado el alumno';
         }else{
@@ -53,6 +60,7 @@ class Consulta extends Controller{
         }
 
         $this->render();
+        */
     }
 }
 

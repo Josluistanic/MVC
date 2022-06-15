@@ -26,6 +26,7 @@
                     <td><?=  $alumno->matricula;    ?></td>
                     <td><?=  $alumno->nombre;       ?></td>
                     <td><?=  $alumno->apellido;     ?></td>
+                    <td><button>Eliminar</button></td>
                     <td><a href="<?= filter_var(constant('URL').'consulta/readAlumno/'.$alumno->matricula,FILTER_SANITIZE_URL); ?>">Editar</a></td>
                     <td><a href="<?= filter_var(constant('URL').'consulta/deleteAlumno/'.$alumno->matricula,FILTER_SANITIZE_URL); ?>">Eliminar</a></td>
                 </tr>
