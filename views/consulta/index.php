@@ -12,6 +12,26 @@
 
     <div id="main">
         <h1>Esta es la vista de consulta</h1>
+        <table class="w-100">
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->alumnos as $alumno) :?>
+                <tr>
+                    <td><?=  $alumno->matricula;    ?></td>
+                    <td><?=  $alumno->nombre;       ?></td>
+                    <td><?=  $alumno->apellido;     ?></td>
+                    <td><a href="<?= filter_var(constant('URL').'consulta/readAlumno/'.$alumno->matricula,FILTER_SANITIZE_URL); ?>">Editar</a></td>
+                    <td><a href="<?= filter_var(constant('URL').'consulta/deleteAlumno/'.$alumno->matricula,FILTER_SANITIZE_URL); ?>">Eliminar</a></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
 

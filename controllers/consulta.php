@@ -2,9 +2,57 @@
 class Consulta extends Controller{
     function __construct(){
         parent::__construct();
+        $alumnos = [];
     }
     function render() {
+        $alumnos = $this->model->get();
+        $this->view->alumnos = $alumnos;
         $this->view->render('consulta/index');
+    }
+    function readAlumno($param = null) {
+        $matricula = $param[0];
+        $alumno = $this->model->getAlumnnoByMatricula($matricula);
+        
+        session_start();
+        $_SESSION['matriculaAlumno'] = $alumno->matricula;
+
+        $this->view->alumno = $alumno;
+        $this->view->render('consulta/detalle');
+
+    }
+    function updateAlumno(){
+        session_start();
+        $matricula    = $_SESSION['matriculaAlumno'];
+        $nombre       = $_POST['nombre'];
+        $apellido     = $_POST['apellido'];
+
+
+        unset($_SESSION['matriculaAlumno']);
+
+        if ($this->model->update(['matricula' => $matricula, 'nombre' => $nombre, 'apellido' => $apellido])) {
+            $alumno = new Alumno();
+            $alumno->matricula = $matricula;
+            $alumno->nombre = $nombre;
+            $alumno->apellido = $apellido;
+
+            $this->view->alumno = $alumno;
+            $this->view->mensaje = 'Se ha actualizado el alumno';
+        }else{
+            $this->view->mensaje = 'Error al actualizar el alumno';
+        }
+        $this->view->render('consulta/detalle');
+
+    }
+    function deleteAlumno($param = null) {
+        $matricula = $param[0];
+
+        if ($this->model->delete($matricula)) {
+            $this->view->mensaje = 'Se ha eliminado el alumno';
+        }else{
+            $this->view->mensaje = 'Error al eliminar el alumno';
+        }
+
+        $this->render();
     }
 }
 

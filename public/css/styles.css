@@ -43,3 +43,7 @@ body{
 .error{
     color: #ac2323;
 }
+
+.w-100{
+    width: 100%;
+}
